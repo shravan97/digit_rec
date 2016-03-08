@@ -6,23 +6,24 @@ import numpy as np
 import pickle
 from sklearn.externals import joblib
 
-digits = load_digits()
-no_samples = len(digits.data)
-X = digits.data
-Y = digits.target
+
+
+data = np.genfromtxt('./data/train.csv',delimiter = ',')
+print 'read data'
+X = data[:,1:]
+Y = data[:,0]
 Y = Y.reshape(Y.shape[0],1)
 
+
+X,a,Y,b = train_test_split(X,Y,test_size = 0.7,random_state = 42)
+print X.shape,Y.shape
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size = 0.33,random_state = 42)
-scores_across_gammas = []
+classifier = svm.SVC()
+classifier.fit(X_train,Y_train)
+preds = classifier.predict(X_test)
+confusion_matrix = metrics.confusion_matrix(preds,Y_test)
+print 'building model'
 
-
-parameters = [{'kernel':['rbf'],'gamma':[1e-2,1e-3,1e-4]},
-			 {'kernel':['linear'],'gamma':[1e-2,1e-3,1e-4],'degree':[1,2,3,4,5,6,7,8,9,10]}]
-
-classifier = GridSearchCV(svm.SVC(),parameters)
-classifier.fit(X_train,Y_train.reshape(Y_train.shape[0],))
-cross_validation_scores = cross_val_score(classifier,X_train,Y_train.reshape(Y_train.shape[0],),cv = 5)
-print cross_validation_scores
 	
 joblib.dump(classifier,'svm_model.pkl')
 
