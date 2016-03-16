@@ -5,3 +5,7 @@ from sklearn.grid_search import GridSearchCV
 import numpy as np
 import pickle
 from sklearn.externals import joblib
+
+def hello_world():
+	return 'Hello World'
+
