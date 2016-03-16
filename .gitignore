@@ -1,1 +1,4 @@
 *~
+*.csv
+/dist/
+/*.egg-info
