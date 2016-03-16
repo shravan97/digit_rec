@@ -7,4 +7,9 @@ setup(name='license_plate_recognition',
       author_email='ajayrfhp1710@gmail.com',
       license='MIT',
       packages=['license_plate_recognition'],
+      install_requires=[
+      	'sklearn',
+      	'numpy',
+      	'pickle'
+      ],
       zip_safe=False)
