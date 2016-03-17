@@ -1,3 +1,1 @@
-def hello_world():
-	return 'Hello World'
-print hello_world()
+from .digit_rec import predict

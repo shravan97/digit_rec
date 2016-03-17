@@ -1,3 +1,4 @@
+
 from sklearn.datasets import load_digits
 from sklearn import svm,metrics,preprocessing
 from sklearn.cross_validation import train_test_split,cross_val_score
@@ -6,6 +7,5 @@ import numpy as np
 import pickle
 from sklearn.externals import joblib
 
-def hello_world():
-	return 'Hello World'
+
 
