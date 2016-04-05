@@ -20,27 +20,33 @@ def predict_with_parms():
 	print 'accuracy_score',accuracy_score
 	joblib.dump(classifier,'svm_model.pkl')
 
-def predict_simple():
+def predict_simple(src=None):
 	'''
 		Default Method, Reads an input image of any size and outputs a digit.
 	'''
+
+	if( src!= None ):
+		img_src = src
+	else:
+		img_src = sys.argv[1]		
 	classifier = joblib.load('./svm_model.pkl')
-	img_src = sys.argv[1]
 	img = cv2.imread(img_src)
 	img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 	img = scipy.misc.imresize(img,(util.digit_size,util.digit_size))
 	img = img.flatten().reshape(1,util.digit_column_size)
 	prediction = classifier.predict(img)
 	print 'prediction is', prediction[0]
-	return prediction
+	return prediction[0]
 
 
 
-def predict():
-	if(len(sys.argv) < 3 ):
-		predict_simple()
+def predict(src=None):
+	if(sys.argv[0] == '/usr/bin/nosetests'):
+		return predict_simple(src)
+	elif(len(sys.argv) < 3 ):
+		return predict_simple()
 	else:
-		predict_with_parms()
+		return predict_with_parms()
 
 
 	

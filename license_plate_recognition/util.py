@@ -8,9 +8,9 @@ from sklearn.externals import joblib
 import sys
 import cv2
 import scipy
-from .digit_rec import predict
+
 
 digit_size = 28
 digit_column_size = digit_size**2
-	
+src = None	
 
