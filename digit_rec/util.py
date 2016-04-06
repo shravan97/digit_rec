@@ -8,10 +8,17 @@ from sklearn.externals import joblib
 import sys
 import cv2
 import scipy
+from sklearn.ensemble import RandomForestClassifier
+import argparse
 
 
 
 digit_size = 28
 digit_column_size = digit_size**2
-	
+parser = argparse.ArgumentParser()
+parser.add_argument("src")
+parser.add_argument("--mode",help='simple or params',choices=['simple','params'])
+parser.add_argument("--model",help='random forest or svm',choices=['rf','svm'])
+args = parser.parse_args()
+
 
