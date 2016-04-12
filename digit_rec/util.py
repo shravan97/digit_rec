@@ -10,7 +10,8 @@ import cv2
 import scipy
 from sklearn.ensemble import RandomForestClassifier
 import argparse
-
+import sklearn.neural_network as sknn
+from sknn.mlp import Classifier , Layer
 
 
 digit_size = 28
@@ -18,7 +19,7 @@ digit_column_size = digit_size**2
 parser = argparse.ArgumentParser()
 parser.add_argument("src")
 parser.add_argument("--mode",help='simple or params',choices=['simple','params'])
-parser.add_argument("--model",help='random forest or svm',choices=['rf','svm'])
+parser.add_argument("--model",help='random forest or svm or ANN',choices=['rf','svm','ann'])
 args = parser.parse_args()
 
 
